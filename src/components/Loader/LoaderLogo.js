@@ -6,7 +6,7 @@ class LogoLoader extends React.Component {
     // const theme = this.props.theme;
     return (
 
-    <div><p>PAVAN KUMAR'S PORTFOLIO </p></div>
+    <div></div>
     );
   }
 }
