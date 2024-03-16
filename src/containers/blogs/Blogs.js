@@ -6,7 +6,7 @@ import { blogSection } from "../../portfolio";
 export default function Blogs() {
   return (
     <div className="main" id="blogs">
-      <div className="blog-header">
+      {/* <div className="blog-header">
         <h1 className="blog-header-text">{blogSection.title}</h1>
         <p className="subTitle blog-subtitle">{blogSection.subtitle}</p>
       </div>
@@ -25,7 +25,7 @@ export default function Blogs() {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

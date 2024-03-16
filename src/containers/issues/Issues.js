@@ -9,7 +9,7 @@ class Issues extends Component {
     const theme = this.props.theme;
     return (
       <div>
-        <div className="issues-header-div">
+        {/* <div className="issues-header-div">
           <Fade bottom duration={2000} distance="20px">
             <h1 className="issues-header" style={{ color: theme.text }}>
               Issues
@@ -20,7 +20,7 @@ class Issues extends Component {
           {issuesData["data"].map((issue) => {
             return <IssueCard issue={issue} />;
           })}
-        </div>
+        </div> */}
       </div>
     );
   }
