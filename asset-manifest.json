@@ -1,20 +1,21 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.b2f0a63c.chunk.css",
-    "main.js": "/portfolio/static/js/main.67db312e.chunk.js",
-    "main.js.map": "/portfolio/static/js/main.67db312e.chunk.js.map",
+    "main.js": "/portfolio/static/js/main.c1068e6e.chunk.js",
+    "main.js.map": "/portfolio/static/js/main.c1068e6e.chunk.js.map",
     "runtime-main.js": "/portfolio/static/js/runtime-main.81af2fa0.js",
     "runtime-main.js.map": "/portfolio/static/js/runtime-main.81af2fa0.js.map",
-    "static/js/2.d3c363f2.chunk.js": "/portfolio/static/js/2.d3c363f2.chunk.js",
-    "static/js/2.d3c363f2.chunk.js.map": "/portfolio/static/js/2.d3c363f2.chunk.js.map",
+    "static/js/2.ca0e60b9.chunk.js": "/portfolio/static/js/2.ca0e60b9.chunk.js",
+    "static/js/2.ca0e60b9.chunk.js.map": "/portfolio/static/js/2.ca0e60b9.chunk.js.map",
     "index.html": "/portfolio/index.html",
-    "precache-manifest.61b1829370027dc22829beaaf96f02b5.js": "/portfolio/precache-manifest.61b1829370027dc22829beaaf96f02b5.js",
+    "precache-manifest.873786486e579635fd712f3636531b72.js": "/portfolio/precache-manifest.873786486e579635fd712f3636531b72.js",
     "service-worker.js": "/portfolio/service-worker.js",
     "static/css/main.b2f0a63c.chunk.css.map": "/portfolio/static/css/main.b2f0a63c.chunk.css.map",
     "static/media/index.css": "/portfolio/static/media/Montserrat-Regular.ee653992.ttf",
+    "static/media/IAF_logo.png": "/portfolio/static/media/IAF_logo.d8cfaca1.png",
     "static/media/address_image.svg": "/portfolio/static/media/address_image.16559172.svg",
-    "static/media/animated_ashutosh.png": "/portfolio/static/media/animated_ashutosh.cd56e836.png",
     "static/media/animated_logo.svg": "/portfolio/static/media/animated_logo.dcd6dee2.svg",
+    "static/media/animated_pavan.png": "/portfolio/static/media/animated_pavan.cd56e836.png",
     "static/media/blogs_image.svg": "/portfolio/static/media/blogs_image.058eca4c.svg",
     "static/media/cloud_infrastructure.svg": "/portfolio/static/media/cloud_infrastructure.cacbc42b.svg",
     "static/media/codeInLogo.png": "/portfolio/static/media/codeInLogo.fee92c18.png",
@@ -54,8 +55,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.81af2fa0.js",
-    "static/js/2.d3c363f2.chunk.js",
+    "static/js/2.ca0e60b9.chunk.js",
     "static/css/main.b2f0a63c.chunk.css",
-    "static/js/main.67db312e.chunk.js"
+    "static/js/main.c1068e6e.chunk.js"
   ]
 }
