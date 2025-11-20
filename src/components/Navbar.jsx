@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import avatarImg from "../assets/profilepic.png";
 function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -13,8 +13,23 @@ function Navbar() {
     <nav className="navbar" id="navbar">
       <div className="nav-container">
         <div className="nav-brand">
-          <Link to="/" className="brand-link">
-            J PAVANKUMAR
+          <Link
+            to="/"
+            className="brand-link"
+            style={{ display: "flex", alignItems: "center", gap: "12px" }}
+          >
+            <img
+              src={avatarImg}
+              alt="J Pavankumar"
+              style={{
+                height: "32px",
+                width: "32px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                border: "2px solid var(--color-primary-light)",
+              }}
+            />
+            <span>J PAVANKUMAR</span>
           </Link>
         </div>
         <div className={`nav-menu${open ? " active" : ""}`} id="nav-menu">

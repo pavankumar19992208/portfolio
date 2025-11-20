@@ -2,10 +2,53 @@ import React from "react";
 import portfolioData from "./portfolioData";
 import { Link } from "react-router-dom";
 import avatarImg from "../assets/pavan_avatar.jpg";
+import ProjectDetailModal from "./ProjectDetailModal";
+import GitHubCalendar from "react-github-calendar";
+function ImageViewer({ src, onClose }) {
+  if (!src) return null;
+  return (
+    <div className="image-viewer-overlay" onClick={onClose}>
+      <button className="close-button" onClick={onClose}>
+        &times;
+      </button>
+      <img
+        src={src}
+        alt="Architecture Diagram"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <style>{`
+        .image-viewer-overlay {
+          position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(0, 0, 0, 0.85);
+          display: flex; align-items: center; justify-content: center;
+          z-index: 3000;
+          backdrop-filter: blur(8px);
+        }
+        .image-viewer-overlay img {
+          max-width: 90vw; max-height: 90vh;
+          object-fit: contain; border-radius: 8px;
+        }
+        .image-viewer-overlay .close-button {
+          position: absolute; top: 15px; right: 25px;
+          font-size: 2.5rem; color: white;
+          background: transparent; border: none; cursor: pointer;
+        }
+      `}</style>
+    </div>
+  );
+}
 
 function HomePage() {
-  const { personalInfo, experience, projects, achievements } = portfolioData;
+  const {
+    personalInfo,
+    experience,
+    projects,
+    achievements,
+    problemSolvingSkills,
+  } = portfolioData;
   const avatarExists = !!avatarImg;
+  const [selectedProject, setSelectedProject] = React.useState(null);
+  const [viewingArch, setViewingArch] = React.useState(null); // State for architecture diagram
 
   return (
     <>
@@ -171,6 +214,79 @@ function HomePage() {
             </div>
           </div>
         </section>
+        <section id="problem-solving" className="section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Problem-Solving Skills</h2>
+              <p className="section-subtitle">
+                Data Structures & Algorithms Proficiency
+              </p>
+            </div>
+            <div className="dsa-skills-grid">
+              {problemSolvingSkills.map((category, idx) => (
+                <div
+                  className="dsa-card"
+                  key={idx}
+                  style={{ "--level-color": category.color }}
+                >
+                  <h3 className="dsa-card-title">{category.level}</h3>
+                  <ul className="dsa-skill-list">
+                    {category.skills.map((skill, sIdx) => (
+                      <li key={sIdx} className="dsa-skill-item">
+                        <span className="dsa-skill-name">{skill.name}</span>
+                        <span className="dsa-skill-count">{skill.count}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p
+              style={{
+                textAlign: "center",
+                marginTop: "32px",
+                color: "var(--color-text-secondary)",
+              }}
+            >
+              Total problems solved on LeetCode & HackerRank: 700+
+            </p>
+          </div>
+        </section>
+        {/* GitHub Activity Section */}
+        <section id="github-activity" className="section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Open Source Contributions</h2>
+              <p className="section-subtitle">My Public Coding Footprint</p>
+            </div>
+            <div className="github-calendars">
+              <div className="github-calendar-container">
+                <GitHubCalendar
+                  username="pavankumar19992208"
+                  blockSize={12}
+                  blockMargin={4}
+                  fontSize={14}
+                  theme={{
+                    light: [
+                      "#ebedf0",
+                      "#9be9a8",
+                      "#40c463",
+                      "#30a14e",
+                      "#216e39",
+                    ],
+                    dark: [
+                      "#161b22",
+                      "#0e4429",
+                      "#006d32",
+                      "#26a641",
+                      "#39d353",
+                    ],
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Experience Timeline */}
         <section className="section container" id="experience">
@@ -203,8 +319,13 @@ function HomePage() {
             <h2 className="section-title">Featured Projects</h2>
           </div>
           <div className="projects-preview-grid" id="projects-preview-grid">
-            {projects.slice(0, 4).map((project, idx) => (
-              <ProjectCard project={project} key={idx} />
+            {projects.slice(0, 6).map((project, idx) => (
+              <ProjectCard
+                project={project}
+                key={idx}
+                onDiveIn={setSelectedProject}
+                onViewArch={() => setViewingArch(project.architecture)}
+              />
             ))}
           </div>
           <div className="projects-cta">
@@ -213,6 +334,16 @@ function HomePage() {
             </Link>
           </div>
         </section>
+        {/* ...existing code... */}
+        {selectedProject && (
+          <ProjectDetailModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            onViewArch={() => setViewingArch(selectedProject.architecture)}
+          />
+        )}
+        <ImageViewer src={viewingArch} onClose={() => setViewingArch(null)} />
+
         {/* Education Section */}
         <section id="education" className="section">
           <div className="container">
@@ -229,7 +360,7 @@ function HomePage() {
                 <p className="education-institution">
                   Swami Vivekananda Institute of Technology, Secunderabad
                 </p>
-                <p className="education-duration">2020 - 2024</p>
+                <p className="education-duration">2021 - 2024</p>
                 <p className="education-grade">CGPA: 6.98/10</p>
                 <div className="status status--success">
                   Academic Topper - 2nd Year 1st Semester
@@ -336,7 +467,8 @@ function HomePage() {
   );
 }
 
-function ProjectCard({ project }) {
+// Pass setSelectedProject to ProjectCard
+function ProjectCard({ project, onDiveIn, onViewArch }) {
   const statusClass =
     project.status === "Completed" ? "completed" : "in-development";
   return (
@@ -355,6 +487,49 @@ function ProjectCard({ project }) {
             {tech}
           </span>
         ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginTop: 16,
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          className="btn btn--primary"
+          style={{ flex: "1 1 auto" }}
+          onClick={() => onDiveIn(project)}
+        >
+          Dive In
+        </button>
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--secondary"
+            style={{
+              flex: "1 1 auto",
+              textAlign: "center",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Live Demo
+          </a>
+        )}
+        {project.architecture && (
+          <button
+            className="btn btn--outline"
+            style={{ flex: "1 1 auto" }}
+            onClick={onViewArch}
+          >
+            Architecture
+          </button>
+        )}
       </div>
     </div>
   );

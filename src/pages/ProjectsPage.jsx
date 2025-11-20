@@ -22,6 +22,7 @@ function ProjectsPage() {
     <div className="container page-content active" id="projects-page">
       <div className="projects-header section-header">
         <h2 className="section-title">All Projects</h2>
+        <p className="section-subtitle">Explore my complete portfolio</p>
         <div className="projects-filters">
           {categories.map((cat) => (
             <button
@@ -73,6 +74,71 @@ function ProjectCard({ project, detailed }) {
             {tech}
           </span>
         ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginTop: "20px",
+          flexWrap: "wrap",
+          borderTop: "1px solid var(--color-border)",
+          paddingTop: "16px",
+        }}
+      >
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--primary"
+            style={{
+              flex: "1 1 auto",
+              textAlign: "center",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Live Demo
+          </a>
+        )}
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--secondary"
+            style={{
+              flex: "1 1 auto",
+              textAlign: "center",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            GitHub Repo
+          </a>
+        )}
+        {project.architecture && (
+          <a
+            href={project.architecture}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--outline"
+            style={{
+              flex: "1 1 auto",
+              textAlign: "center",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Architecture
+          </a>
+        )}
       </div>
     </div>
   );
